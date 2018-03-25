@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
-import CannonBase from './components/CannonBase';
+import Sprite from './components/Sprite';
+
+const initialState = {
+  counter: 0,
+  ballPos: { x: 0, y: 0 },
+  ballVel: { x: 5, y: 0.098 }
+};
+
+const floor = 500;
+
+type State = Readonly<typeof initialState>;
 
 const rotate = keyframes`
   0% {
@@ -11,7 +21,7 @@ const rotate = keyframes`
   }
 `;
 
-const viewBox = `
+export const viewBox = `
   ${window.innerWidth / -2}
   ${100 - window.innerHeight}
   ${window.innerWidth}
@@ -19,10 +29,18 @@ const viewBox = `
 `;
 
 const Wrapper = styled.div`
+  position: absolute;
   padding: 0px;
   #arc {
     transform-origin: 10% 10%;
-    animation: ${rotate} 2s linear infinite;
+    animation: ${rotate} 1s linear infinite;
+  }
+  #leftAngle {
+    position: absolute;
+    transform-origin: 10% 10%;
+    left: -1000px;
+    top: -500px;
+    animation: ${rotate} 1s linear infinite;
   }
   h2,
   h3,
@@ -33,28 +51,45 @@ const Wrapper = styled.div`
     margin: 0px;
     padding: 0px;
   }
-  svg {
+  #mainSVG {
     background: lightblue;
     height: 100vh;
     width: 100vw;
   }
 `;
 
-class App extends React.Component {
+class App extends Component<{}, State> {
+  readonly state = initialState;
+
+  componentDidMount() {
+    window.requestAnimationFrame(this.gameLoop);
+  }
+
+  gameLoop = () => {
+    this.setState((prevState: State) => ({
+      counter: prevState.counter + 1,
+      ballPos: {
+        x: prevState.ballPos.x + prevState.ballVel.x,
+        y:
+          prevState.ballPos.y < floor
+            ? prevState.ballPos.y + prevState.ballVel.y * prevState.counter
+            : floor
+      },
+      ballVel: {
+        x: prevState.ballPos.y < floor ? prevState.ballVel.x : 0,
+        y: prevState.ballPos.y < floor ? prevState.ballVel.y : 0
+      }
+    }));
+
+    window.requestAnimationFrame(this.gameLoop);
+  };
+
   render() {
+    const { ballPos } = this.state;
     return (
       <Wrapper>
-        <svg viewBox={viewBox}>
-          <CannonBase />  
-          <path
-            id="arc"
-            d="M 100 100 
-            C 100 100, 200 200, 300 100
-            C 100 100, 200 200, 100 100"
-            stroke="white"
-            stroke-width="2"
-            fill="transparent"
-          />
+        <svg id="mainSVG">
+          <Sprite x={ballPos.x} y={ballPos.y} />
         </svg>
       </Wrapper>
     );
