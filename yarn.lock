@@ -2792,6 +2792,10 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
+framesync@^3.0.2, framesync@^3.1.7:
+  version "3.1.7"
+  resolved "https://registry.yarnpkg.com/framesync/-/framesync-3.1.7.tgz#9b9aa3eff8598625302597851a428f40c3dc1c6b"
+
 fresh@0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
@@ -5205,6 +5209,20 @@ pn@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
 
+popmotion-pose@^1.0.24:
+  version "1.0.24"
+  resolved "https://registry.yarnpkg.com/popmotion-pose/-/popmotion-pose-1.0.24.tgz#efca463886a7a2299e058320530b68db8c95760a"
+  dependencies:
+    popmotion "^8.1.22"
+
+popmotion@^8.1.22:
+  version "8.1.22"
+  resolved "https://registry.yarnpkg.com/popmotion/-/popmotion-8.1.22.tgz#71857484546ae5b7335b0704423a3a761de1fe67"
+  dependencies:
+    framesync "^3.1.7"
+    style-value-types "^1.0.4"
+    stylefire "^1.2.9"
+
 portfinder@^1.0.9:
   version "1.0.13"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.13.tgz#bb32ecd87c27104ae6ee44b5a3ccbf0ebb1aede9"
@@ -5725,9 +5743,9 @@ react-dev-utils@4.2.1:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-react-dom@^16.2.0:
-  version "16.2.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.2.0.tgz#69003178601c0ca19b709b33a83369fe6124c044"
+react-dom@^16.3.0:
+  version "16.3.0-rc.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.3.0-rc.0.tgz#18282bcc98496197877b9365467362caf74b8e45"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -5737,6 +5755,12 @@ react-dom@^16.2.0:
 react-error-overlay@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-3.0.0.tgz#c2bc8f4d91f1375b3dad6d75265d51cd5eeaf655"
+
+react-pose@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-pose/-/react-pose-1.0.1.tgz#d742472180882828508badf358432b7a34822bb6"
+  dependencies:
+    popmotion-pose "^1.0.24"
 
 react-scripts-ts@2.14.0:
   version "2.14.0"
@@ -5779,9 +5803,9 @@ react-scripts-ts@2.14.0:
   optionalDependencies:
     fsevents "1.1.2"
 
-react@^16.2.0:
-  version "16.2.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.2.0.tgz#a31bd2dab89bff65d42134fa187f24d054c273ba"
+react@^16.3.0-rc.0:
+  version "16.3.0-rc.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.3.0-rc.0.tgz#07ddbe3ef14b910038576ef4afb29793d9e20f84"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -6666,6 +6690,10 @@ style-loader@0.19.0:
     loader-utils "^1.0.2"
     schema-utils "^0.3.0"
 
+style-value-types@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/style-value-types/-/style-value-types-1.0.4.tgz#58df3a09281d719d981ee4a317addc434eecc877"
+
 styled-components@^3.2.3:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-3.2.3.tgz#50f71207320eeb1ef539dec4637f21f5e3c936b4"
@@ -6680,6 +6708,13 @@ styled-components@^3.2.3:
     stylis "^3.5.0"
     stylis-rule-sheet "^0.0.10"
     supports-color "^3.2.3"
+
+stylefire@^1.2.9:
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/stylefire/-/stylefire-1.2.9.tgz#957f6ce8382cb41b14568303b6078e956df1baac"
+  dependencies:
+    framesync "^3.0.2"
+    style-value-types "^1.0.4"
 
 stylis-rule-sheet@^0.0.10:
   version "0.0.10"

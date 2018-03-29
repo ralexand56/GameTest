@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Sprite from './components/Sprite';
+import posed from 'react-pose';
 
 const initialState = {
   counter: 0,
   ballPos: { x: 0, y: 0 },
-  ballVel: { x: 5, y: 0.098 }
+  ballVel: { x: 5, y: 0.098 },
 };
+
+const poseProps = {
+  visible: { opacity: 1 },
+  hidden: { opacity: 0 },
+};
+
+const Box = posed.div(poseProps);
 
 const floor = 500;
 
@@ -73,12 +81,12 @@ class App extends Component<{}, State> {
         y:
           prevState.ballPos.y < floor
             ? prevState.ballPos.y + prevState.ballVel.y * prevState.counter
-            : floor
+            : floor,
       },
       ballVel: {
         x: prevState.ballPos.y < floor ? prevState.ballVel.x : 0,
-        y: prevState.ballPos.y < floor ? prevState.ballVel.y : 0
-      }
+        y: prevState.ballPos.y < floor ? prevState.ballVel.y : 0,
+      },
     }));
 
     window.requestAnimationFrame(this.gameLoop);
@@ -88,6 +96,7 @@ class App extends Component<{}, State> {
     const { ballPos } = this.state;
     return (
       <Wrapper>
+        <Box />
         <svg id="mainSVG">
           <Sprite x={ballPos.x} y={ballPos.y} />
         </svg>
