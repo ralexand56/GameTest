@@ -2,19 +2,33 @@ import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Sprite from './components/Sprite';
 import posed from 'react-pose';
+// import { spring } from 'popmotion';
+// import { TweenProps } from 'popmotion/animations/tween/types';
 
 const initialState = {
   counter: 0,
   ballPos: { x: 0, y: 0 },
   ballVel: { x: 5, y: 0.098 },
+  isOpen: false,
 };
 
-const poseProps = {
-  visible: { opacity: 1 },
-  hidden: { opacity: 0 },
+const sidebarProps = {
+  open: {
+    x: '0%',
+    delayChildren: 200,
+    staggerChildren: 100,
+    staggerDirection: 1,
+  },
+  closed: { x: '-100%', delay: 300 },
 };
 
-const Box = posed.div(poseProps);
+const itemProps = {
+  open: { y: 0, opacity: 1 },
+  closed: { y: 20, opacity: 0 },
+};
+
+const Sidebar = posed.ul(sidebarProps);
+const Item = posed.li(itemProps);
 
 const floor = 500;
 
@@ -71,6 +85,10 @@ class App extends Component<{}, State> {
 
   componentDidMount() {
     window.requestAnimationFrame(this.gameLoop);
+    setInterval(
+      () => this.setState(prevState => ({ isOpen: !prevState.isOpen })),
+      2000,
+    );
   }
 
   gameLoop = () => {
@@ -93,10 +111,29 @@ class App extends Component<{}, State> {
   };
 
   render() {
-    const { ballPos } = this.state;
+    const { ballPos, isOpen } = this.state;
     return (
       <Wrapper>
-        <Box />
+        <Sidebar
+          elementType="ul"
+          className="sidebar"
+          pose={isOpen ? 'open' : 'closed'}
+          poseProps={sidebarProps}
+        >
+          {Array(10)
+            .fill('')
+            .map((x, i) => (
+              <Item
+                key={i}
+                elementType="li"
+                className="item"
+                poseProps={itemProps}
+              >
+                {i + 1}
+              </Item>
+            ))}
+        </Sidebar>
+
         <svg id="mainSVG">
           <Sprite x={ballPos.x} y={ballPos.y} />
         </svg>

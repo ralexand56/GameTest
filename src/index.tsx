@@ -13,6 +13,22 @@ injectGlobal`
     overflow: hidden;
     background: #e2edff;
   }
+
+  .item {
+    border-radius: 5px;
+    background: lightblue;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    margin: 3px;
+    font-weight: bold;
+    color: #fff;
+    font-family: 'Century Gothic';
+  }
 `;
 
 ReactDOM.render(<App />, document.getElementById('root') as HTMLElement);

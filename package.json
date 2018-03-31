@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react-pose": "^1.0.1",
+    "react-pose": "^1.0.2",
     "react-scripts-ts": "2.14.0",
     "styled-components": "^3.2.3"
   },
@@ -18,8 +18,9 @@
     "@types/node": "^9.6.0",
     "@types/react": "^16.0.40",
     "@types/react-dom": "^16.0.4",
-    "react": "^16.3.0-rc.0",
-    "react-dom": "^16.3.0-rc.0",
+    "popmotion": "^8.1.22",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
     "typescript": "^2.7.2"
   }
 }
